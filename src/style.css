@@ -85,9 +85,12 @@
   --theme-btn-color:  #1a1a1a;
   --theme-btn-border: #ccc;
   --theme-btn-shadow: #bbb;
-  --title-color:      #e4000f;
-  --title-shadow-1:   #1a1a1a;
-  --title-shadow-2:   #000000;
+  --title-color:             #e4000f;
+  --title-shadow-1:          #1a1a1a;
+  --title-shadow-2:          #000000;
+  --modal-title:             #e4000f;
+  --modal-title-shadow-1:    #1a1a1a;
+  --modal-title-shadow-2:    #000000;
 }
 
 /* ─── Page ───────────────────────────────────────────────────────────────── */
@@ -201,14 +204,15 @@ body {
   box-shadow: none;
 }
 
-/* ─── Pop animation ──────────────────────────────────────────────────────── */
+/* ─── Pop + drop animation ───────────────────────────────────────────────── */
 @keyframes pop {
-  0%   { transform: scale(1);    opacity: 1; }
-  35%  { transform: scale(1.35); opacity: 1; }
-  100% { transform: scale(0);    opacity: 0; }
+  0%   { transform: scale(1)    translateY(0);     opacity: 1; }
+  18%  { transform: scale(1.4)  translateY(-14px); opacity: 1; }
+  35%  { transform: scale(1.15) translateY(0);     opacity: 0.9; }
+  100% { transform: scale(0.85) translateY(110px); opacity: 0; }
 }
 .pop {
-  animation: pop 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: pop 0.55s ease-in forwards;
 }
 
 /* ─── Drag selection box ─────────────────────────────────────────────────── */
@@ -279,6 +283,12 @@ body {
   box-shadow: 0 5px 0 #a07a00, 0 8px 18px rgba(0,0,0,0.5);
   text-shadow: none;
 }
+[data-theme="light"] #splash-screen p:nth-child(3) {
+  color: #1a1a1a;
+  background: #fffbe6;
+  border-color: #e4000f;
+  box-shadow: 0 5px 0 #a00009, 0 8px 18px rgba(0,0,0,0.15);
+}
 
 /* ─── Result modal ───────────────────────────────────────────────────────── */
 #result-modal {
@@ -308,7 +318,7 @@ body {
   font-size: 38px;
   font-weight: 900;
   color: var(--modal-title);
-  text-shadow: 3px 3px 0 #e4000f, 5px 5px 0 #7a0008;
+  text-shadow: 3px 3px 0 var(--modal-title-shadow-1, #e4000f), 5px 5px 0 var(--modal-title-shadow-2, #7a0008);
   letter-spacing: 1px;
 }
 #result-modal p {
@@ -435,6 +445,15 @@ body {
 #theme-button:active {
   transform: translateY(2px);
   box-shadow: 0 2px 0 var(--theme-btn-shadow);
+}
+
+/* ─── How-to-play hint ───────────────────────────────────────────────────── */
+#how-to-play {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--text-label);
+  text-align: center;
 }
 
 /* ─── Score panel ────────────────────────────────────────────────────────── */
